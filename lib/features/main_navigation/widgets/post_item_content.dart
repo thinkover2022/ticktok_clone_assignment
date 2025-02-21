@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ticktok_clone/constants/gaps.dart';
 import 'package:ticktok_clone/features/main_navigation/models/post.dart';
+import 'package:ticktok_clone/utils/network_image_provider.dart';
 
 class PostItemContent extends StatelessWidget {
   const PostItemContent({
@@ -63,23 +63,23 @@ class PostItemContent extends StatelessWidget {
               height: 200,
               width: double.infinity,
               child: PageView(
-                children: post.imageUrls
-                    .map((imageUrl) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: Container(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: imageUrl,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) =>
-                                  Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                            ))))
-                    .toList(),
+                children: post.imageUrls.map((imageUrl) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Image(
+                        image: NetworkImageProvider(
+                          imageUrl,
+                          headers: {"Access-Control-Allow-Origin": "*"},
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
             ),
           ],

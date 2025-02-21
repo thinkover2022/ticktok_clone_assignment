@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ticktok_clone/constants/gaps.dart';
 import 'package:ticktok_clone/features/main_navigation/models/post.dart';
+import 'package:ticktok_clone/utils/network_image_provider.dart';
 
 class PostItemAvata extends StatelessWidget {
   PostItemAvata({
@@ -22,7 +23,10 @@ class PostItemAvata extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage(post.avatarUrl),
+              backgroundImage: NetworkImageProvider(
+                post.avatarUrl,
+                headers: {"Access-Control-Allow-Origin": "*"},
+              ),
             ),
             Positioned(
               bottom: -10,
@@ -67,7 +71,10 @@ class PostItemAvata extends StatelessWidget {
                   left: left,
                   child: CircleAvatar(
                     radius: _avataSizes[index].toDouble(),
-                    backgroundImage: NetworkImage(e.value),
+                    backgroundImage: NetworkImageProvider(
+                      e.value,
+                      headers: {"Access-Control-Allow-Origin": "*"},
+                    ),
                   ),
                 );
               },

@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:ticktok_clone/constants/gaps.dart';
 import 'package:ticktok_clone/features/main_navigation/models/post.dart';
+import 'package:ticktok_clone/utils/network_image_provider.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -31,7 +32,10 @@ class _ActivityScreenState extends State<ActivityScreen> {
         return ListTile(
           leading: CircleAvatar(
             radius: 24,
-            backgroundImage: NetworkImage(posts[index].avatarUrl),
+            backgroundImage: NetworkImageProvider(
+              posts[index].avatarUrl,
+              headers: {"Access-Control-Allow-Origin": "*"},
+            ),
           ),
           title: Row(
             children: [

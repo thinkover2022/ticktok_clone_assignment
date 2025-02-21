@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:ticktok_clone/features/main_navigation/models/post.dart';
+import 'package:ticktok_clone/utils/network_image_provider.dart';
 
 class SearchScreen extends StatefulWidget {
   final String query;
@@ -41,7 +42,10 @@ class _SearchScreenState extends State<SearchScreen> {
         return ListTile(
           leading: CircleAvatar(
             radius: 24,
-            backgroundImage: NetworkImage(filteredPosts[index].avatarUrl),
+            backgroundImage: NetworkImageProvider(
+              filteredPosts[index].avatarUrl,
+              headers: {"Access-Control-Allow-Origin": "*"},
+            ),
           ),
           title: Row(
             children: [

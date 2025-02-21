@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:ticktok_clone/constants/gaps.dart';
 import 'package:ticktok_clone/features/main_navigation/models/post.dart';
+import 'package:ticktok_clone/utils/network_image_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -146,7 +147,10 @@ class ProfileHeader extends StatelessWidget {
                               border: Border.all(color: Colors.white, width: 2),
                             ),
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(followUrls[0]),
+                              backgroundImage: NetworkImageProvider(
+                                followUrls[0],
+                                headers: {"Access-Control-Allow-Origin": "*"},
+                              ),
                             ),
                           ),
                         ),
@@ -158,7 +162,10 @@ class ProfileHeader extends StatelessWidget {
                                 border:
                                     Border.all(color: Colors.white, width: 2)),
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(followUrls[1]),
+                              backgroundImage: NetworkImageProvider(
+                                followUrls[1],
+                                headers: {"Access-Control-Allow-Origin": "*"},
+                              ),
                             ),
                           ),
                         ),
@@ -177,7 +184,10 @@ class ProfileHeader extends StatelessWidget {
               ],
             ),
             CircleAvatar(
-              backgroundImage: NetworkImage(avatarUrl),
+              backgroundImage: NetworkImageProvider(
+                avatarUrl,
+                headers: {"Access-Control-Allow-Origin": "*"},
+              ),
               radius: 40,
             ),
           ],
@@ -307,7 +317,10 @@ class PostCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: NetworkImage(post["avataUrl"]!),
+                backgroundImage: NetworkImageProvider(
+                  post["avataUrl"]!,
+                  headers: {"Access-Control-Allow-Origin": "*"},
+                ),
               ),
               const SizedBox(width: 10),
               Text(post["username"]!,
@@ -390,7 +403,10 @@ class ReplyCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: NetworkImage(reply["avataUrl"]!),
+                backgroundImage: NetworkImageProvider(
+                  reply["avataUrl"]!,
+                  headers: {"Access-Control-Allow-Origin": "*"},
+                ),
               ),
               const SizedBox(width: 10),
               Text(reply["username"]!,

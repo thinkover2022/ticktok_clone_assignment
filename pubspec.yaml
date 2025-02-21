@@ -44,7 +44,7 @@ dependencies:
   gallery_saver_plus: ^3.2.1
   flex_color_scheme: ^8.1.0
   go_router: ^14.8.0
-  flutter_cors: ^1.5.0
+  http: ^1.3.0
 
 dev_dependencies:
   flutter_test:
